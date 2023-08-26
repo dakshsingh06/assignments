@@ -1,0 +1,280 @@
+*******24/07/23*******
+1.Prime number
+function isprime(number) { 
+if (number <= 1) { return false;}
+     if ( number <= 3 ) { return true;}
+
+const sqrt = Math.sqrt(number);
+  for (let i = 2; i <= sqrt; i++) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+
+  return true; 
+ }
+
+
+2.armstrong
+
+function isArmstrongNumber(number) {
+  
+  const numberStr = String(number);
+  const numDigits = numberStr.length;
+
+  let sum = 0;
+  for (let i = 0; i < numDigits; i++) {
+    const digit = parseInt(numberStr[i]);
+    sum += Math.pow(digit, numDigits);
+  }
+
+  
+  return sum === number;
+}
+
+3.Add function
+
+function add() {
+  let sum = 0;
+  for (let i=0 ; i<arguments.length i++) {
+    let arg =arguments[i];
+    if ((typeof arg === 'number' && !isNaN(arg)  && isFinite(arg) ) 
+    {
+      sum += arg;
+    }
+    if (typeof arg === 'string' && !isNaN(parseInt(arg))  && isFinite(parseInt(arg)) ) 
+    {
+      sum += arg;
+    }
+  }
+  return sum;
+}
+
+
+*********25/07/23**********
+q.4
+Create add fn
+add() - 0
+add(1,2) - 3
+add(1,"2") - 3
+add(1, "one") - 0
+add(1,[2,3,"4"], "1", "one")
+add(1,[one, two,3, "4"], one, two, "one", "two"); 
+function one(){
+return 1;
+}
+function two(){
+return "2";
+}
+
+Answer
+function add(...args) {
+  let sum = 0;
+
+  for (const arg of args) {
+    if (typeof arg === "number") {
+      sum += arg;
+    } else if (typeof arg === "string" && !isNaN(arg)) {
+      sum += Number(arg);
+    } else if (Array.isArray(arg)) {
+      sum += arg.reduce((acc, curr) => {
+        if (typeof curr === "number") {
+          return acc + curr;
+        } else if (typeof curr === "string" && !isNaN(curr)) {
+          return acc + Number(curr);
+        } else {
+          return acc;
+        }
+      }, 0);
+    }
+  }
+
+  return sum;
+}
+	q.5 CONVERTING SAME FUNCTION WITH REST ARGUMENTS
+const add = (...args) => {
+  let sum = 0;
+
+  for (const arg of args) {
+    if (typeof arg === "number") {
+      sum += arg;
+    } else if (typeof arg === "string" && !isNaN(arg)) {
+      sum += Number(arg);
+    } else if (Array.isArray(arg)) {
+      sum += arg.reduce((acc, curr) => {
+        if (typeof curr === "number") {
+          return acc + curr;
+        } else if (typeof curr === "string" && !isNaN(curr)) {
+          return acc + Number(curr);
+        } else {
+          return acc;
+        }
+      }, 0);
+    }
+  }
+
+  return sum;
+};
+
+// Test cases
+console.log(add()); // Output: 
+console.log(add(1, 2)); // Output: 3
+console.log(add(1, "2")); // Output: 3
+console.log(add(1, "one")); // Output: 0
+console.log(add(1, [2, 3, "4"], "1", "one")); // Output: 7 (1 + 2 + 3 + 4 + 1 + 0)
+console.log(add(1, ["one", "two", 3, "4"], one, two, "one", "two")); // Output: 9 (1 + 0 + 0 + 0 + 0 + 0 + 1 + 0)
+q.6
+write a javascript program to display the current day and time in the following order output: today is : day_name current time is: time
+function getCurrentDayAndTime() {
+  const now = new Date();
+
+  const dayFormatter = new Intl.DateTimeFormat("en-US", { weekday: "long" });
+  const timeFormatter = new Intl.DateTimeFormat("en-US", { timeStyle: "short" });
+
+  const dayName = dayFormatter.format(now);
+  const time = timeFormatter.format(now);
+
+  console.log(`Today is: ${dayName}`);
+  console.log(`Current time is: ${time}`);
+}
+
+getCurrentDayAndTime();
+
+
+Q.7 WRITE CURRENT DATE.
+function getCurrentDate() { 
+const now = new Date();
+ return now.toLocaleDateString("en-US"); 
+}
+ const currentDate = getCurrentDate(); 
+console.log("Current Date:", currentDate);
+
+
+************26/07/23*************
+
+question 1:
+
+# named functions:
+
+function area_perimeter(){
+   
+   
+    var l=prompt("Enter length : ");
+    var b=prompt("Enter breadth : ");
+    l=parseInt(l);
+    b=parseInt(b);
+    var p=2*(l+b);
+    var a=l*b;
+   console.log(l);
+    console.log(b);
+    console.log(p);
+    console.log(a);
+   
+}
+
+const area = (l=parseInt(prompt("l")),b=parseInt(prompt("b"))) => l*b;
+
+# arrow functions: - It saved from hoesting
+
+const area = (l=parseInt(prompt("l")),b=parseInt(prompt("b"))) => l*b;
+const perimeter = (l=parseInt(prompt("l")),b=parseInt(prompt("b"))) => 2*(l+b);
+
+# anonymous functions:
+function area_perimeter()
+{
+var perimeter=function (l,b)
+{
+return 2*(l+b);
+}
+var area=function (l,b);
+{
+return l*b;
+}
+return [perimeter,area];
+}
+
+# namely functions:
+
+function area_perimeter()
+{
+var perimeter=function perimeter(l,b)
+{
+return 2*(l+b);
+}
+var area=function area(l,b);
+{
+return l*b;
+}
+return [perimeter,area];
+}
+
+
+
+***********27/07/2023*********
+
+write the given codes in js 
+1. Create an Array of Salaries, Now do the Sum of Salaries who is greater than 10000.
+Hint : reduce function
+
+2. Get the Max Salary from the Array
+Hint : reduce function
+
+3. Count Those Salaries whose > 10000, note : don't use filter.
+Hint : reduce function
+
+4. Maintain an Array of Employees. (Array of Objects), Now Sort the Employee by Name and Salary.
+
+5. In Employee Salaries add 10% Tax in Each Employee Salary and Store in a new Array, So don't modify the Orginal Array.
+Hint : filter, map
+
+
+Sum of Salaries greater than 10000 using the reduce function:
+const salaries = [15000, 12000, 8000, 18000, 9000, 20000];
+const sumGreaterThan10000 = salaries.reduce((acc, curr) => (curr > 10000 ? acc + curr : acc), 0);
+
+console.log(sumGreaterThan10000); // Output: 53000
+
+Get the Max Salary from the Array using the reduce function:
+const salaries = [15000, 12000, 8000, 18000, 9000, 20000];
+const maxSalary = salaries.reduce((max, curr) => (curr > max ? curr : max), 0);
+
+console.log(maxSalary); // Output: 20000
+
+
+Count Salaries greater than 10000 using the reduce function:
+const salaries = [15000, 12000, 8000, 18000, 9000, 20000];
+const countGreaterThan10000 = salaries.reduce((count, curr) => (curr > 10000 ? count + 1 : count), 0);
+
+console.log(countGreaterThan10000); // Output: 4
+
+
+Sort Employees by Name and Salary:
+const employees = [
+  { name: "John", salary: 50000 },
+  { name: "Alice", salary: 40000 },
+  { name: "Bob", salary: 55000 },
+];
+
+employees.sort((a, b) => {
+  if (a.name !== b.name) {
+    return a.name.localeCompare(b.name);
+  } else {
+    return a.salary - b.salary;
+  }
+});
+
+console.log(employees);
+
+Add 10% Tax to each Employee Salary and store in a new Array using map:
+const employees = [
+  { name: "John", salary: 50000 },
+  { name: "Alice", salary: 40000 },
+  { name: "Bob", salary: 55000 },
+];
+
+const salariesWithTax = employees.map((employee) => ({
+  ...employee,
+  salary: employee.salary * 1.1,
+}));
+
+console.log(salariesWithTax);
